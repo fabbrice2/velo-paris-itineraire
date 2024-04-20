@@ -20,17 +20,8 @@ for (let i = 0; i < fav.length; i++) {
 }
 
 
-
-
-
 // gestion du map
-        
-let coordonnees_geo = {
 
-    "lon":2.4865807592869,
-    "lat":48.871256519012
-
-}
 var map = L.map('map').setView([48.8566, 2.3522], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -38,10 +29,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-var marker = L.marker([coordonnees_geo.lat, coordonnees_geo.lon]).addTo(map);
-
-
-// {% for coord in coordinates %}
-//     L.marker([{{ coord[0] }}, {{ coord[1] }}]).addTo(map);
-// {% endfor %}
-
+// Add markers for each set of coordinates
+coordinates.forEach(function(coord) {
+    L.marker([coord.lat, coord.lon]).addTo(map);
+});

@@ -51,10 +51,17 @@
       </table>
     </div>
 
-  
+ 
+
+
+<script>
+  var coordinates = {{ coordinates | tojson }};
+</script>
+
+
   
  <script src="{{ url_for('static', filename='js/listes_velib.js') }}"> </script>
  
->
+
   </body>
 </html>

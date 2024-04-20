@@ -27,15 +27,28 @@ def get_data_from_url():
         return None
 
 
-# Route to retrieve the Velib data
+def extract_coordinates(data):
+    
+    coordinates = []
+    for record in data:
+        try:
+            lon = record['coordonnees_geo']['lon']
+            lat = record['coordonnees_geo']["lat"]
+            coordinates.append({"lon": lon, "lat": lat})
+        except KeyError:
+            pass  # Ignore records without coordinates
+    return coordinates
+
 @app.route('/velib', methods=['GET'])
 def get_velib_data():
     data = get_data_from_url()
     if data:
-        # return jsonify(data)
-        return render_template('listes_velib.html.jinja', records=data)
+        coordinates = extract_coordinates(data)
+        print(coordinates)
+        return render_template('listes_velib.html.jinja', records=data, coordinates=coordinates)
     else:
         return jsonify({"error": "Failed to fetch Velib data"})
+
 
 
 @app.route("/login/", methods=["POST", "GET"])
