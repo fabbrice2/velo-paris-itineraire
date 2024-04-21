@@ -3,7 +3,8 @@ from flask import Flask, redirect, render_template, session, url_for, request, j
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import db
 import requests
-
+import time
+import requests
 
 cursor = db.cursor()
 
@@ -17,13 +18,32 @@ def home():
     return render_template("home.html.jinja")
 
 def get_data_from_url():
+    # Modification de Aboubakar
+    global cached_data, Last_Update_Time
+
+    # Modification de Aboubakar
+    cached_data = None
+    Last_Update_Time = None
+
+
+    # Modification de Aboubakar
+    if cached_data is not None and Last_Update_Time is not None:
+        if time.time() - Last_Update_Time > 300:
+            print("Les données en cache sont périmées. Récupération de nouvelles données...")
+            return cached_data 
+
     url = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/velib-disponibilite-en-temps-reel/records?limit=20"
     response = requests.get(url)
+
     if response.status_code == 200:
         data = response.json()
-        print(data['results'])
+        # Modification de Aboubakar
+        cached_data = data['results']
+        Last_Update_Time = time.time()
+        print("Nouvelles données récupérées et mises en cache.")
         return data['results']
     else:
+        print("La récupération des données a échoué.")
         return None
 
 
@@ -36,7 +56,7 @@ def extract_coordinates(data):
             lat = record['coordonnees_geo']["lat"]
             coordinates.append({"lon": lon, "lat": lat})
         except KeyError:
-            pass  # Ignore records without coordinates
+            pass  
     return coordinates
 
 @app.route('/velib', methods=['GET'])
@@ -44,7 +64,6 @@ def get_velib_data():
     data = get_data_from_url()
     if data:
         coordinates = extract_coordinates(data)
-        print(coordinates)
         return render_template('listes_velib.html.jinja', records=data, coordinates=coordinates)
     else:
         return jsonify({"error": "Failed to fetch Velib data"})
