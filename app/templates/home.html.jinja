@@ -9,21 +9,26 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
 <body>
-  {% extends 'base.html.jinja' %}
-
-  {% block content %}
-  <h2>Bienvenue sur Projet Vélib'!</h2>
-  <p>Connectez-vous ou inscrivez-vous pour commencer.</p>
-
-  <h1>Velib Data</h1>
+  <header>
+    <h1>Projet Vélib'</h1>
+  </header>
+  <nav>
+    <ul>
+      {% if "username" in session %}
+      <a href="{{ url_for('profil') }}">{{ username }}</a>
+      {% else %}
+      <li><a href="/login">Connexion</a></li>
+      <li><a href="/register">Inscription</a></li>
+      {% endif %}
+    </ul>
+  </nav>
   <a href="{{url_for('get_velib_data')}}">Listes des Vélos</a>
-  <a href="{{ url_for('profil') }}">Mon profil</a>
-  <a href="{{ url_for('logout') }}">Se deconnecter</a>
-  {% endblock %}
-
+  {# <li><a href="/favorites">Favoris</a></li> #}
 
 </body>
 

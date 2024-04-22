@@ -10,30 +10,30 @@ cursor = db.cursor()
 
 @app.route("/", methods=["POST", "GET"])
 def home():
-    # if "username" in session:
-    #     username = session["username"]
-    #     return render_template("home.html.jinja", username=username)
-    # else:
+    if "username" in session:
+        username = session["username"]
+        return render_template("home.html.jinja", username=username)
     return render_template("home.html.jinja")
+
 
 def get_data_from_url():
     url = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/velib-disponibilite-en-temps-reel/records?limit=20"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        print(data['results'])
-        return data['results']
+        print(data["results"])
+        return data["results"]
     else:
         return None
 
 
 # Route to retrieve the Velib data
-@app.route('/velib', methods=['GET'])
+@app.route("/velib", methods=["GET"])
 def get_velib_data():
     data = get_data_from_url()
     if data:
         # return jsonify(data)
-        return render_template('listes_velib.html.jinja', records=data)
+        return render_template("listes_velib.html.jinja", records=data)
     else:
         return jsonify({"error": "Failed to fetch Velib data"})
 
