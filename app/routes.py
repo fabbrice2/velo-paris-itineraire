@@ -8,6 +8,30 @@ import requests
 
 cursor = db.cursor()
 
+def insert_station_data(data):
+    for record in data:
+        try:
+            station_id = record['stationcode'] 
+            location = record['name']
+            bike_number_available = record['numbikesavailable']
+            mechanical_bike_count = record['mechanical']
+            electric_bike_count = record['ebike']
+            available_parking_spots = record['numdocksavailable']
+            cursor.execute(
+                "INSERT INTO station (id_station, location, bike_number_available, mechanical_bike_count, electric_bike_count, available_parking_spots) VALUES (%s, %s, %s, %s, %s, %s)",
+                (station_id, location, bike_number_available, mechanical_bike_count, electric_bike_count, available_parking_spots)
+            )
+            db.commit()
+            print(f"les donnees de la station {station_id} ont ete inserees avec succes.")
+        except KeyError as e:
+            print(f"erreur lors de linsertion des donnees: {e}")
+            pass
+        except Exception as e:
+            print(f"une erreur sest produite lors de linsertion des donnees: {e}")
+            pass
+
+
+
 
 @app.route("/", methods=["POST", "GET"])
 def home():
@@ -64,6 +88,7 @@ def get_velib_data():
     data = get_data_from_url()
     if data:
         coordinates = extract_coordinates(data)
+        insert_station_data(data) 
         return render_template('listes_velib.html.jinja', records=data, coordinates=coordinates)
     else:
         return jsonify({"error": "Failed to fetch Velib data"})
