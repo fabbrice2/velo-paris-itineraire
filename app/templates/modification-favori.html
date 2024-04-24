@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/modification-favori.css') }}"
+    />
+  </head>
+  <body>
+    {% extends "base_connected.html" %}
+
+  {% block content %}
+
+
+  <div class="modification">
+
+    <div class="input-group">
+      <input type="text" class="form-control"/>
+    </div>
+  
+    <div class="input-group">
+      <button class="form-control annuler"> <a class="" href="#">Annuler</a></button>
+    </div>
+  
+    <div class="input-group">
+      <button class="form-control valider"> <a class="" href="#">Valider</a></button>
+    </div>
+  
+  </div>
+
+
+   {% endblock%}
+  </body>
+</html>
