@@ -5,6 +5,8 @@ from config import db
 import requests
 import time
 import requests
+from flask import session
+
 
 cursor = db.cursor()
 
@@ -94,7 +96,6 @@ def get_velib_data():
         return jsonify({"error": "Failed to fetch Velib data"})
 
 
-
 @app.route("/login/", methods=["POST", "GET"])
 def login():
     errormsg = ""
@@ -110,12 +111,15 @@ def login():
             session["username"] = user[1]
             session["email"] = user[3]
             session["password"] = user[2]
+            
+            # Afficher l'ID de l'utilisateur
+            print(f"ID de l'utilisateur : {user[0]}")
+            
             return redirect(url_for("home"))
         else:
             errormsg = "Email ou mot de passe incorrect"
 
     return render_template("login.html.jinja", errormsg=errormsg)
-
 
 @app.route("/register/", methods=["POST", "GET"])
 def register():
@@ -175,3 +179,36 @@ def updateProfil():
         return redirect(url_for("home"))
 
     return render_template("updateProfil.html.jinja")
+
+from flask import session
+
+from flask import session
+
+from flask import request
+
+@app.route('/favorites', methods=['POST'])
+def add_favorite():
+    if 'id' in session:
+        user_id = session['id']
+        
+        station_name = request.form.get('station_name')
+        station_id = request.form.get('station_id')
+
+        
+        try:
+  
+            cursor.execute(
+                "INSERT INTO favorite_relations (favorite_name, user_id, station_id) VALUES (%s, %s, %s)",
+                (station_name, user_id, station_id)
+            )
+            db.commit()
+            print("Données de favoris insérées avec succès.")
+            return redirect(request.referrer)
+        except Exception as e:
+            print(f"Erreur lors de l'insertion des données de favoris : {e}")
+            return jsonify({"error": "Erreur lors de l'insertion des données de favoris."}), 500
+    else:
+        return redirect(url_for('login'))
+
+
+
