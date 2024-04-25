@@ -9,12 +9,12 @@ cursor = db.cursor()
 
 
 @app.route("/", methods=["POST", "GET"])
-def home():
+def base():
     # if "username" in session:
     #     username = session["username"]
     #     return render_template("home.html.jinja", username=username)
     # else:
-    return render_template("home.html.jinja")
+    return render_template("accueil.html")
 
 def get_data_from_url():
     url = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/velib-disponibilite-en-temps-reel/records?limit=20"
@@ -131,3 +131,27 @@ def updateProfil():
         return redirect(url_for("home"))
 
     return render_template("updateProfil.html.jinja")
+
+
+# ...................................................
+
+
+@app.route("/modificationFavori")
+def modificationFavori():
+    return render_template("modification-favori.html")
+
+
+@app.route("/listFavori")
+def listFavori():
+    return render_template("favoris-list.html")
+
+
+@app.route("/deconnexion")
+def deconnexion():
+     return render_template("accueil.html")
+
+@app.route("/accueil")
+def header():
+    return render_template("accueil.html")
+
+

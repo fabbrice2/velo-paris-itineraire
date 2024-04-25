@@ -19,10 +19,17 @@
   }
 
   .form-control[type="text"] {
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; 
     border-radius: 4px;
     height: 55px;
+    font-size: 22px;
   }
+
+  .form-control[type="text"]::placeholder {
+    font-size: 22px;
+    text-align: center;
+  }
+
 
   .form-control[type="button"] {
     border: none;

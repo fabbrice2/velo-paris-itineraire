@@ -5,8 +5,12 @@ let close = document.querySelector(".profil-setting .close");
 let closeResponsiv = document.querySelector(".profil-setting-responsiv .close-responsiv");
 let menuBurger = document.querySelector(".menu-burger");
 
+let moreEditDel = document.querySelector(".more-edit-del");
+let moreBtn = document.querySelector(".button-more .more-btn");
+let moreEditDelClose = document.querySelector(".more-edit-del .more-edit-del-close");
 
-console.log(close);
+
+
 
 
 
@@ -33,5 +37,22 @@ menuBurger.addEventListener('click' ,function () {
     closeResponsiv.addEventListener('click' ,function () {
         
         profilSettingResponsiv.classList.remove('active')
+    })
+    
+
+
+
+    //.....................................................
+
+
+moreBtn.addEventListener('click' ,function () {
+    moreBtn.style.display = "none"
+    moreEditDel.classList.toggle('active');
+
+    })
+    
+    moreEditDelClose.addEventListener('click' ,function () {
+        moreBtn.style.display = "block"
+        moreEditDel.classList.remove('active')
     })
     

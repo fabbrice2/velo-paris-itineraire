@@ -180,7 +180,7 @@ body {
    background-color: #FFFFFF;
    border: 1px solid rgb(255, 30, 0);
    width: 180px;
-   height: 300px;
+   height: 325px;
    border-bottom-left-radius: 25px;
    position: absolute;
    right: 0;
@@ -290,10 +290,23 @@ text-decoration: none;
 
 }
 
+.nav-setting .nav-setting-item .accueil{
+   color: #000000;
+   font-size: 18px;
+   font-weight: bold;
+}
 .nav-setting .nav-setting-item .favori{
    color: #000000;
    font-size: 18px;
    font-weight: bold;
+}
+
+
+.nav-setting .nav-setting-item .favori:hover , 
+.nav-setting .nav-setting-item .accueil:hover ,
+.nav-setting .nav-setting-item .update:hover{
+color: #008B9F;
+text-decoration: underline;
 }
 
 
@@ -388,7 +401,7 @@ text-decoration: none;
 
   .after-header .container-left {
    border: 1px solid green;
-   width: 500px;
+   width: 428px;
    text-align: center;
   }
     .after-header .container-left p {
@@ -514,3 +527,27 @@ footer {
 }
 
 /* Vous pouvez ajouter d'autres règles de media queries selon vos besoins */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
