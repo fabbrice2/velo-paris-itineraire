@@ -1,4 +1,5 @@
 from app import app
+import mysql.connector
 from flask import Flask, redirect, render_template, session, url_for, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import db
@@ -6,6 +7,9 @@ import requests
 import time
 import requests
 from flask import session
+
+
+
 
 
 cursor = db.cursor()
@@ -208,6 +212,33 @@ def show_favorites():
             return jsonify({"error": "Erreur lors de la récupération des favoris."}), 500
     else:
         return redirect(url_for('login'))
+    
+
+@app.route('/define_location', methods=['POST'])
+def define_location():
+    favorite_id = request.form['favorite_id']
+    location = request.form['location']
+    try:
+        cursor.execute("UPDATE favorite_relations SET user_location_name = %s WHERE id_favorite = %s", (location, favorite_id))
+        db.commit()  
+        return redirect(request.referrer)
+    except Exception as e:
+        return f'Error: {e}', 500 
+
+@app.route('/delete_favorite', methods=['POST'])
+def delete_favorite():
+    favorite_id = request.form['favorite_id']
+
+    try:
+        cursor.execute("DELETE FROM favorite_relations WHERE id_favorite = %s", (favorite_id,))
+        db.commit()  
+        return redirect(request.referrer) 
+    except Exception as e:
+        return f'Error: {e}', 500
+
+
+
+
 
     
     

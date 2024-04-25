@@ -11,8 +11,21 @@
     <h1>My Favorites</h1>
     <ul>
         {% for favorite in favorites %}
-        <input placeholder="Définir un lieu">
-        <li>{{ favorite[1] }}</li>
+        <form action="/define_location" method="POST">
+            {% if favorite[4] %}
+            <h1>{{ favorite[4] }}</h1>
+            {% else %}
+            <h1>Aucun lieu défini</h1>
+            {% endif %}
+            <li>{{ favorite[1] }}</li>
+            <input type="hidden" name="favorite_id" value="{{ favorite[0] }}">
+            <input type="text" name="location" placeholder="Définir un lieu">
+            <button type="submit">Définir</button>
+        </form>
+        <form action="/delete_favorite" method="POST">
+            <input type="hidden" name="favorite_id" value="{{ favorite[0] }}">
+            <button type="submit">Supprimer</button>
+        </form>
         {% endfor %}
     </ul>
 </body>
