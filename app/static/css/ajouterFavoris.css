@@ -10,36 +10,43 @@ body{
 }    
 
 #ajouterFav{
-    display: block;
-    width: 1000px;
     text-align: center;
-    padding: 5em;
+    border-radius: 10px;
+    padding: 1em;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
 }    
 
+#ajouterFav #formFav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #ajouterFav span{
     float: right;
+    margin-top: -2em;
 }    
 
 #ajouterFav p{
+    width: 800px;
     background-color: gray;
     padding: 1em;
     justify-content: center;
+}    
 
+#ajouterFav input{
+    padding: 1.5em;
     width: 800px;
-}    
+} 
 
-#ajouterFav form{
-    justify-content: center;
-}    
-
-#annuler{
-    color: red;
-}    
-
-#valider{
-    color: green;
-}    
+button{
+    background-color: #008B9F;
+    width: 850px;
+    margin-top: 15px;
+    padding: 1.5em;
+    color: white;
+    border: none;
+}
 
 
 /*RESPONSIVE*/

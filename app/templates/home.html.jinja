@@ -19,9 +19,11 @@
   <p>Connectez-vous ou inscrivez-vous pour commencer.</p>
 
   <h1>Velib Data</h1>
-  <a href="{{url_for('get_velib_data')}}">Listes des Vélos</a>
-  <a href="{{ url_for('profil') }}">Mon profil</a>
-  <a href="{{ url_for('logout') }}">Se deconnecter</a>
+    <a href="{{url_for('get_velib_data')}}">Listes des Vélos</a>
+    {% if "username" in session %}
+    <a href="{{ url_for('profil') }}"> Mon profil </a>
+    <a href="{{ url_for('logout') }}"> Se deconnecter </a>
+    {% endif %}
   {% endblock %}
 
 

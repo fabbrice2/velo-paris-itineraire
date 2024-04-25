@@ -134,10 +134,14 @@ def updateProfil():
 
 @app.route("/favorites")
 def favoris():
-    # if "id" not in session:
-    #     return redirect(url_for("login"))
-    return render_template("mesFavoris.html.jinja")
+    if "id" not in session:
+        return redirect(url_for("login"))
+    if "username" in session:
+        username = session["username"]
+    return render_template("mesFavoris.html.jinja", username=username)
 
 @app.route('/ajouterFavoris')
 def ajouterFavoris():
+    if "id" not in session:
+        return redirect(url_for("login"))
     return render_template("ajouterFavoris.html.jinja")

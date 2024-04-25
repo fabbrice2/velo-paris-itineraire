@@ -18,12 +18,14 @@
                     </a>
                     <h1>Ajouter Un Favoris</h1>
                 </div>
-                <form action="/ajouterFav" method="post">
-                    {#P change selon le choix#}
-                    <p>Benjamin Godard - Victor Hugo</p>
-                    <input type="text" id="nomFavoris" name="nomFavoris" placeholder="Entrer un nom" required><br>
-                    <button type="button" id="valider" >Valider</button>
-                </form>
+                <div id="formFav">
+                    <form action="/ajouterFav" method="post">
+                        {#P change selon le choix#}
+                        <p>Benjamin Godard - Victor Hugo</p>
+                        <input type="text" id="nomFavoris" name="nomFavoris" placeholder="Entrer un nom" required><br>
+                        <button type="submit" >Valider</button>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

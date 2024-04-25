@@ -21,9 +21,9 @@
   <body>
     <h1>Velib Data</h1>
 
-    <a href="{{ url_for('home') }}"
-      ><button id="fetchDataBtn">Accueil</button></a
-    >
+    <a href="{{ url_for('home') }}">
+      <button id="fetchDataBtn">Accueil</button>
+    </a>
   
     <div id="map"></div>
     <div id="dataContainer">
@@ -45,7 +45,7 @@
           <td>{{ record['mechanical'] }}</td>
           <td>{{ record['ebike'] }}</td>
           <td>{{ record['numdocksavailable'] }}</td>
-          <td><a href='/ajouterFavoris'><button class='fav'>Fav</button><a></td>
+          <td><a href='/ajouterFavoris'  data-name="{{ record['name'] }}" ><button class='fav'>Fav</button><a></td>
         </tr>
 
         {% endif %} {% endfor %}
