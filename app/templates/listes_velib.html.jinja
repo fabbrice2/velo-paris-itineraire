@@ -60,53 +60,9 @@
   </div>
 
 
-
-
   <script>
     var coordinates = {{ coordinates | tojson }};
   </script>
-
-  <script>
-
-    const favButtons = document.querySelectorAll('.fav');
-
-
-    favButtons.forEach(button => {
-      button.addEventListener('click', function () {
-
-        const row = this.closest('tr');
-
-
-        const name = row.querySelector('td:nth-child(1)').textContent;
-        const numbikesavailable = row.querySelector('td:nth-child(2)').textContent;
-        const mechanical = row.querySelector('td:nth-child(3)').textContent;
-        const ebike = row.querySelector('td:nth-child(4)').textContent;
-        const numdocksavailable = row.querySelector('td:nth-child(5)').textContent;
-
-        console.log("Nom: ", name);
-        console.log("Nombre de vélibs disponibles: ", numbikesavailable);
-        console.log("Type mécanique: ", mechanical);
-        console.log("Type électrique: ", ebike);
-        console.log("Nombre de places libres: ", numdocksavailable);
-
-
-        const data = {
-          station_name: name,
-          numbikesavailable: numbikesavailable,
-          mechanical: mechanical,
-          ebike: ebike,
-          numdocksavailable: numdocksavailable
-        };
-
-
-        const form = document.getElementById('favorite_form');
-        form.elements['station_name'].value = name;
-        form.submit();
-      });
-    });
-  </script>
-
-
 
 
   <script src="{{ url_for('static', filename='js/listes_velib.js') }}"> </script>
