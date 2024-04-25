@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,11 +11,12 @@
     crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+     crossorigin="">
+    </script>
 
-     <style>
+    <style>
       #map { height: 180px; }
-   </style>
+    </style>
   </head>
   <body>
     <h1>Velib Data</h1>
@@ -28,11 +29,11 @@
     <div id="dataContainer">
       <table>
         <tr>
-          <th>adresse</th>
-          <th>nombre de vélibs disponibles</th>
-          <th>type mecanique</th>
-          <th>type electrique</th>
-          <th>nombre de places libres</th>
+          <th>Adresse</th>
+          <th>Nombre de Vélibs Disponibles</th>
+          <th>Type Mécanique</th>
+          <th>Type Electrique</th>
+          <th>Nombre de Places Libres</th>
           <th>My Favorite</th>
         </tr>
         {% set sorted_records = records | sort(attribute='name') %} {% for
@@ -44,7 +45,7 @@
           <td>{{ record['mechanical'] }}</td>
           <td>{{ record['ebike'] }}</td>
           <td>{{ record['numdocksavailable'] }}</td>
-          <td><a href='#'><button class='fav'>Fav</button><a></td>
+          <td><a href='/ajouterFavoris'><button class='fav'>Fav</button><a></td>
         </tr>
 
         {% endif %} {% endfor %}

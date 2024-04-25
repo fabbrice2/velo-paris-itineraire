@@ -131,3 +131,13 @@ def updateProfil():
         return redirect(url_for("home"))
 
     return render_template("updateProfil.html.jinja")
+
+@app.route("/favorites")
+def favoris():
+    # if "id" not in session:
+    #     return redirect(url_for("login"))
+    return render_template("mesFavoris.html.jinja")
+
+@app.route('/ajouterFavoris')
+def ajouterFavoris():
+    return render_template("ajouterFavoris.html.jinja")
