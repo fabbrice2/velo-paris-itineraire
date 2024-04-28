@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page de Connexion</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /*  centrer les champs */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    label {
+      margin-top: 20px;
+    }
+    input {
+      width: 250px;
+      height: 30px;
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="rectangle">
+      <span class="bike">Bike</span>
+      <img src="Frame 3.png" alt="Bike image">
+      <div class="cutout-mira-daily"></div>
+    </div>
+    <div class="rectangle-1">
+      <span class="sign-up">Connectez-vous</span>
+      <span class="sign-up-2">Connectez-vous pour accéder à votre espace</span>
+      <form>
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit" class="button" id="inscription-button">
+          <div class="group">
+            <span class="text-inscription">Connexion</span>
+          </div>
+        </button>
+      </form>
+      
+    </div>
+  </div>
+
+  <script>
+    const inscriptionButton = document.getElementById('inscription-button');
+    inscriptionButton.addEventListener('click', () => {
+      alert('Vous êtes inscrit avec succès !');
+    });
+  </script>
+</body>
+</html>
+
