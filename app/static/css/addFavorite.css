@@ -1,0 +1,94 @@
+body{
+    font-size: 22px;
+}
+
+#favoris{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}    
+
+#ajouterFav{
+    text-align: center;
+    border-radius: 10px;
+    padding: 1em;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
+}    
+
+#ajouterFav #formFav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ajouterFav span{
+    float: right;
+    margin-top: -2em;
+}    
+
+#ajouterFav p{
+    width: 800px;
+    background-color: gray;
+    padding: 1em;
+    justify-content: center;
+}    
+
+#ajouterFav input{
+    padding: 1.5em;
+    width: 800px;
+} 
+
+button{
+    background-color: #008B9F;
+    width: 850px;
+    margin-top: 15px;
+    padding: 1.5em;
+    color: white;
+    border: none;
+}
+
+
+/*RESPONSIVE*/
+
+@media screen and (max-width: 1000px) {
+    body{
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    body{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    body{
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    body{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body{
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body{
+        font-size: 12px;
+    }
+}

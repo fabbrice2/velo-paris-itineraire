@@ -1,0 +1,138 @@
+
+  #titleFav{
+  
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  #titleFav a{
+    position: absolute;
+    top: 33;
+    left: 42;
+    font-size: 19px;
+    text-decoration: none;
+    color: black;
+  }
+
+
+  #titleFav a:hover{
+  
+    text-decoration:underline;
+    
+  }
+
+#ajouterFav h1 {
+text-align: center;
+  }
+
+  .name_station{
+     list-style-type: none;
+   }
+   
+   article{
+  
+   }
+
+   .edit-submit-content{
+     display: flex;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+  margin-left: 30px;
+   }
+  
+   .valid-change{
+     display: none;
+   }
+
+   .cancel-btn{
+    display: none;
+   }
+
+.location{
+    display: none;
+    height: 34px;
+  border-radius: 10px;
+  border: 2px gray groove;
+  }
+
+ .delete-btn , .edit-btn{
+   background-color: white;
+   border: none;
+ }
+ 
+ .edit-btn-change {
+  width: 65px;
+  height: 34px;
+  color: white;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
+
+ }
+
+ .cancel-btn{
+  width: 65px;
+  height: 34px;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+
+ }
+
+ .fav-item{
+ 
+
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  margin: auto;
+ }
+ .edit-submit{
+
+  width: 80%;
+ }
+
+
+
+ .more-btn{
+  display: none;
+ }
+  /* Responsive Styles */
+  
+  @media only screen and (max-width: 1000px) {
+    .fav-item {
+      
+        margin-bottom: 20px;
+        width: 80%;
+    }}
+  @media only screen and (max-width: 700px) {
+    .fav-item {
+       
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+     .edit-submit-content {
+        display: flex;
+      
+    } 
+
+    .edit-btn,
+    .cancel-btn {
+        margin-top: 10px;
+      
+    }
+
+    .edit-btn-change, .cancel-btn  {
+      width: 17%;
+    }
+   
+
+    .location{
+      width: 37%;
+    }
+}
