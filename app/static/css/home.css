@@ -1,0 +1,39 @@
+.popup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  border: 1px solid red;
+  border-radius: 25px;
+  padding: 10px 15px;
+}
+.popup p {
+  text-align: center;
+}
+.popup .details img {
+  width: 25px;
+}
+.popup .details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.popup .details div {
+  height: 35px;
+  background: rgb(224, 219, 219);
+  display: flex;
+  align-items: center;
+}
+.popup div span {
+  text-align: center;
+}
+.favorite_button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.favorite_button a {
+  text-decoration: none;
+  color: black;
+}

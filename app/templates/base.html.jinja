@@ -1,29 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Vélib'</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css2/base.css') }}" />
 </head>
+
 <body>
-    <header>
-        <h1>Projet Vélib'</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/login">Connexion</a></li>
-            <li><a href="/register">Inscription</a></li>
-            <li><a href="/favorites">Favoris</a></li>
-        </ul>
+  <header>
+    <div class="logo">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo-velelib" />
+    </div>
+
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        {% if "username" in session %}
+        <a class="nav-link" href="{{ url_for('listFavori') }}">Favoris</a>
+        <a href="{{ url_for('profil') }}">{{ username }}</a>
+        {% else %}
+        <li><a href="/login">Connexion</a></li>
+        <li><a href="/register">Inscription</a></li>
+        {% endif %}
+      </ul>
     </nav>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
-    <footer>
-        <p>© 2024 Projet Vélib'</p>
-    </footer>
+  </header>
+
+
+
+
+  <section class="after-header">
+    <div class="container-left">
+      <p>LET ' S RIDE THE</p>
+      <h1>FUTURE</h1>
+    </div>
+    <div class="container-right">
+      <img src="{{ url_for('static', filename='images/bike.png') }}" class="velib" alt="velib" />
+    </div>
+  </section>
+
+
+
+
+  <div class="container">
+    {% block content %}
+
+
+    {% endblock%}
+  </div>
+
+
+
+  <footer>
+    <div class="footer-up">
+      <div class="logo-footer">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo-velelib" />
+      </div>
+      <div class="logo-items">
+        <ul class="footer-logo">
+          <li class="footer-logo-item">
+            <a class="footer-logo-link" href="#">
+              <img src="{{ url_for('static', filename='images/image-facebook.png') }}" alt="logo-velelib" /></a>
+          </li>
+          <li class="footer-logo-item">
+            <a class="footer-logo-link" href="#">
+              <img src="{{ url_for('static', filename='images/image-instagram.png') }}" alt="logo-velelib" /></a>
+          </li>
+          <li class="footer-logo-item">
+            <a class="footer-logo-link" href="#">
+              <img src="{{ url_for('static', filename='images/image-youtube.png') }}" alt="logo-velelib" /></a>
+          </li>
+          <li class="footer-logo-item">
+            <a class="footer-logo-link" href="#">
+              <img src="{{ url_for('static', filename='images/image-linkedin.png') }}" alt="logo-velelib" /></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>@Copyright 2024</p>
+    </div>
+  </footer>
 </body>
+
 </html>
