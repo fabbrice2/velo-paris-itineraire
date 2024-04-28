@@ -1,68 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Velib Data</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/listes_velib.css') }}">
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
 
-     <style>
-      #map { height: 180px; }
-   </style>
-  </head>
-  <body>
-    <h1>Velib Data</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velib Data</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/listes_velib.css') }}" />
 
-    <a href="{{ url_for('home') }}"
-      ><button id="fetchDataBtn">Accueil</button></a
-    >
-  
-    <div id="map"></div>
-    <div id="dataContainer">
-      <table>
-        <tr>
-          <th>adresse</th>
-          <th>nombre de vélibs disponibles</th>
-          <th>type mecanique</th>
-          <th>type electrique</th>
-          <th>nombre de places libres</th>
-          <th>My Favorite</th>
-        </tr>
-        {% set sorted_records = records | sort(attribute='name') %} {% for
-            record in sorted_records %} {% if
-            record['nom_arrondissement_communes'] =='Paris' %}
-        <tr>
-          <td>{{ record['name'] }}</td>
-          <td>{{ record['numbikesavailable'] }}</td>
-          <td>{{ record['mechanical'] }}</td>
-          <td>{{ record['ebike'] }}</td>
-          <td>{{ record['numdocksavailable'] }}</td>
-          <td><a href='#'><button class='fav'>Fav</button><a></td>
-        </tr>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-        {% endif %} {% endfor %}
-      </table>
-    </div>
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
 
- 
+<body>
+  <h1>Velib Data</h1>
 
+  <a href="{{ url_for('home') }}"><button id="fetchDataBtn">Accueil</button></a>
 
-<script>
-  var coordinates = {{ coordinates | tojson }};
-</script>
+  <div id="map"></div>
+  <div id="dataContainer">
+    <table>
+      <tr>
+        <th>adresse</th>
+        <th>nombre de vélibs disponibles</th>
+        <th>type mecanique</th>
+        <th>type electrique</th>
+        <th>nombre de places libres</th>
+        <th>My Favorite</th>
+      </tr>
+      {% set sorted_records = records | sort(attribute='name') %} {% for
+      record in sorted_records %} {% if
+      record['nom_arrondissement_communes'] =='Paris' %}
+      <tr>
+        <td>{{ record['name'] }}</td>
+        <td>{{ record['numbikesavailable'] }}</td>
+        <td>{{ record['mechanical'] }}</td>
+        <td>{{ record['ebike'] }}</td>
+        <td>{{ record['numdocksavailable'] }}</td>
+        <td><a href='#'><button class='fav'>Fav</button><a></td>
+      </tr>
 
+      {% endif %} {% endfor %}
+    </table>
+  </div>
 
-  
- <script src="{{ url_for('static', filename='js/listes_velib.js') }}"> </script>
- 
+  <script src="{{ url_for('static', filename='js/listes_velib.js') }}"></script>
+</body>
 
-  </body>
 </html>
-

@@ -2,27 +2,195 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+
+    <script>
+        var coordinates = {{ coordinates | tojson }};
+    </script>
+
+
 </head>
 
+
+
 <body>
-  {% extends 'base.html.jinja' %}
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo-velelib" />
+        </div>
 
-  {% block content %}
-  <h2>Bienvenue sur Projet Vélib'!</h2>
-  <p>Connectez-vous ou inscrivez-vous pour commencer.</p>
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                {% if "username" in session %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('show_favorites') }}">Favoris</a>
+                </li>
+                <li>
+                    <div class='pseudo'>
+                        <span>S<span>
+                    </div>
+                    <!--...........profil setting..............-->
+                    <div class="profil-setting">
+                        <img src="{{ url_for('static', filename='images/close.png') }}" alt="button-velelib"
+                            class="close" />
+                        <div class='pseudo-setting'>
+                            <span>S<span>
+                        </div>
+                        <ul class="nav-setting">
+                            <li class="nav-setting-item">
+                                <a class="nav-setting-link  update" href="{{ url_for('profil') }}">Modifier mon profil</a>
+                            </li>
+                            <li class="nav-setting-item">
+                                <a class="nav-setting-link deconnexion" href="{{ url_for('logout') }}">Deconnexion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item-connexion">
+                    <a class="nav-link" href="{{ url_for('login') }}">Connexion</a>
+                </li>
+                <li class="nav-item-inscription">
+                    <a class="nav-link" href="{{ url_for('register') }}">S'inscrire</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
 
-  <h1>Velib Data</h1>
-  <a href="{{url_for('get_velib_data')}}">Listes des Vélos</a>
-  <a href="{{ url_for('profil') }}">Mon profil</a>
-  <a href="{{ url_for('logout') }}">Se deconnecter</a>
-  {% endblock %}
+
+
+
+
+
+
+        <!--  .......................................-->
+
+        <div class="profil-setting-responsiv">
+
+            <img src="{{ url_for('static', filename='images/close.png') }}" alt="logo-velelib"
+                class="close-responsiv" />
+
+
+            <div class='pseudo-setting'>
+                <span>S<span>
+            </div>
+
+            <ul class="nav-setting">
+                <li class="nav-setting-item  nav-setting-item-resp">
+                    <a class="nav-setting-link  nav-setting-link-resp  accueil" href="{{ url_for('home') }}">Accueil
+                    </a>
+                </li>
+                <li class="nav-setting-item  nav-setting-item-resp">
+                    <a class="nav-setting-link  nav-setting-link-resp  favori"
+                        href="{{ url_for('show_favorites') }}">Liste
+                        des favoris </a>
+                </li>
+                <li class="nav-setting-item  nav-setting-item-resp">
+                    <a class="nav-setting-link  nav-setting-link-resp  update"
+                        href="{{ url_for('profil') }}">Modifier mon profil</a>
+                </li>
+                <li class="nav-setting-item  nav-setting-item-resp">
+                    <a class="nav-setting-link  nav-setting-link-resp deconnexion"
+                        href="{{ url_for('logout') }}">Deconnexion</a>
+                </li>
+            </ul>
+
+        </div>
+
+
+
+        <!--  .......................................-->
+
+
+
+        <div class='menu-burger'>
+            <img src="{{ url_for('static', filename='images/menu-burger.png') }}" alt="logo-velelib" class="menu" />
+        </div>
+
+
+    </header>
+
+
+
+
+
+    <section class="after-header">
+        <div class="container-left">
+            <p>LET ' S RIDE THE</p>
+            <h1>FUTURE</h1>
+        </div>
+        <div class="container-right">
+            <img src="{{ url_for('static', filename='images/bike.png') }}" class="velib" alt="velib" />
+        </div>
+    </section>
+
+
+
+
+    <div class="container">
+
+        {% block content %}
+
+
+        {% endblock%}
+    </div>
+
+
+
+
+
+
+
+
+    <div id="map"></div>
+
+    <footer>
+        <div class="footer-up">
+            <div class="logo-footer">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo-velelib" />
+            </div>
+            <div class="logo-items">
+                <ul class="footer-logo">
+                    <li class="footer-logo-item">
+                        <a class="footer-logo-link" href="#">
+                            <img src="{{ url_for('static', filename='images/image-facebook.png') }}"
+                                alt="logo-velelib" /></a>
+                    </li>
+                    <li class="footer-logo-item">
+                        <a class="footer-logo-link" href="#">
+                            <img src="{{ url_for('static', filename='images/image-instagram.png') }}"
+                                alt="logo-velelib" /></a>
+                    </li>
+                    <li class="footer-logo-item">
+                        <a class="footer-logo-link" href="#">
+                            <img src="{{ url_for('static', filename='images/image-youtube.png') }}"
+                                alt="logo-velelib" /></a>
+                    </li>
+                    <li class="footer-logo-item">
+                        <a class="footer-logo-link" href="#">
+                            <img src="{{ url_for('static', filename='images/image-linkedin.png') }}"
+                                alt="logo-velelib" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>@Copyright 2024</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 
 
 </body>

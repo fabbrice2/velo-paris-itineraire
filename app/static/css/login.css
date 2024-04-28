@@ -46,7 +46,8 @@
   flex: 1;
   color: #009eb5;
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: bold;
   padding-left: -10px;
 }
 .form-container {
@@ -102,10 +103,10 @@ input:focus {
   box-shadow: 0 0 5px rgba(0, 158, 181, 0.5);
 }
 input:invalid {
-  border-color: red;
+  border: 2px solid red;
 }
 .invalid {
-  border-color: red;
+  border: 2px solid red;
 }
 
 @keyframes shake {
@@ -129,3 +130,43 @@ input:invalid {
 .invalid {
   animation: shake 0.4s ease-in-out;
 }
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  .login {
+    flex-direction: column;
+    height: auto;
+  }
+  .deco-content {
+    width: 100%;
+    height: auto;
+  }
+  .form-container {
+    width: 100%;
+    padding: 20px;
+  }
+  .image-container {
+    display: block;
+    text-align: center;
+  }
+  .logo {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sign-in-container {
+    padding: 30px 20px;
+  }
+  .sign-in-container button {
+    padding: 10px 35px;
+  }
+}
+
+

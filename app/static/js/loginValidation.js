@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
     form.addEventListener('submit', function(event) {
       const usernameInput = document.getElementById('username');
-      const passwordInput = document.getElementById('password');
+      const emailInput = document.getElementById('email');
   
       let isValid = true;
   
@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", function() {
         usernameInput.classList.remove('invalid');
       }
   
-      if (passwordInput.value.trim() === '') {
+      if (emailInput.value.trim() === '') {
         isValid = false;
-        passwordInput.classList.add('invalid');
+        emailInput.classList.add('invalid');
       } else {
-        passwordInput.classList.remove('invalid');
+        emailInput.classList.remove('invalid');
       }
   
       if (!isValid) {
-        event.preventDefault(); // Empêche l'envoi du formulaire si la validation échoue
+        event.preventDefault();
       }
     });
   });

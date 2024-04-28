@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/favoris-list.css') }}" />
+</head>
+
+<body>
+  {% extends "home.html.jinja" %}
+
+  {% block content %}
+
+ 
+  <div class="title-favori">
+    <h1>Mes Favoris</h1>
+  </div>
+ {% for fav in favorites %}
+  
+ 
+  <div class="element-list">
+    <div class="element">
+      <div class='bloc-adresse'>
+        <img src="{{ url_for('static', filename='images/home.png') }}" alt="icone-maison">
+        <div class="adresse">
+          <span class="name-adresse">Maison {{fav[4]}}</span>
+          <p class="adresse-item">{{ fav[2] }} Jouffroy d'Abbans - Wagram dddddddddddddddddddddddddddddd</p>
+        </div>
+      </div>
+
+      <div class="button-edit-del">
+        <button class="edit-btn"> <a class="" href="{{ url_for('define_location') }}"> <img
+              src="{{ url_for('static', filename='images/edit.png') }}" alt="icone-edit" class="edit" /> </a></button>
+        <button class="delete-btn"> <a class="" href="{{ url_for('delete_favorite') }}"> <img
+              src="{{ url_for('static', filename='images/delete.png') }}" alt="icone-delete" class="delete" /></a>
+        </button>
+      </div>
+      <div class="button-more">
+        <button class="more-btn"> <img src="{{ url_for('static', filename='images/more.png') }}" alt="icone-more"
+            class="more" /> </button>
+      </div>
+
+
+      <!--...............................-->
+      <div class="more-edit-del">
+        <img src="{{ url_for('static', filename='images/close-black.png') }}" alt="close" class="more-edit-del-close" />
+
+        <ul class="">
+
+          <li class="more-edit-del-item">
+            <a class="more-edit-del-link  more-edit-del-update" href="{{ url_for('define_location') }}">Modifier</a>
+          </li>
+          <li class="more-edit-del-item">
+            <a class="more-edit-del-link more-edit-del-delete" href="{{ url_for('delete_favorite') }}">Supprimer</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!--....................................-->
+    </div>
+  </div>
+  {% endfor %}
+  <script src="{{ url_for('static', filename='js/favoris-list.js') }}"></script>
+
+  {% endblock%}
+</body>
+
+</html>

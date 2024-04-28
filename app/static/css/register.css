@@ -46,7 +46,8 @@
   flex: 1;
   color: #009eb5;
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: bold;
   padding-left: -10px;
 }
 .form-container {
@@ -129,4 +130,65 @@ input:invalid {
 
 .invalid {
   animation: shake 0.4s ease-in-out;
+}
+
+
+
+@media screen and (max-width: 860px) {
+  .register {
+    flex-direction: column;
+    height: auto;
+  }
+  .deco-content,
+  .form-container {
+    width: 100%;
+  }
+  .sign-up-container {
+    padding: 30px 20px;
+  }
+  .navigation {
+    justify-content: center;
+  }
+  .image-container {
+    display: block;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .logo {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+  .sign-up-container {
+    padding: 20px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px 12px;
+  }
+  form {
+    padding: 0 20px;
+  }
+  .sign-up-container button {
+    padding: 10px 35px;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  .logo {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  .sign-up-container button {
+    padding: 8px 30px;
+  }
 }
